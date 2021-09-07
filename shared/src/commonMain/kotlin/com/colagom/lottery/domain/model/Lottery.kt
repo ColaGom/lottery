@@ -1,4 +1,5 @@
-package com.colagom.lottery
+package com.colagom.lottery.domain.model
 
-class Lottery {
-}
+data class Lottery(
+    val drwNo: Int
+)

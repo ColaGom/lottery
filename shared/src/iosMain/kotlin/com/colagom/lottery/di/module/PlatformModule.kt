@@ -1,5 +1,7 @@
 package com.colagom.lottery.di.module
 
-import org.koin.core.module.Module
+import org.koin.dsl.module
 
-expect fun platformModule(): Module
+actual fun platformModule() = module {
+
+}
