@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
+    kotlin("kapt")
     id("com.android.library")
 }
 
@@ -30,35 +31,23 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                with(Deps.Kotlinx) {
-                    implementation(coroutinesCore)
-                    implementation(serializationCore)
-                }
-
-                with(Deps.Ktor) {
-                    implementation(clientCore)
-                    implementation(clientJson)
-                    implementation(clientLogging)
-                    implementation(clientSerialization)
-                }
-
-                with(Deps.Koin) {
-                    api(core)
-                    api(test)
+                with(libs) {
+                    implementation(bundles.ktor.common)
+                    implementation(coroutines.core)
+                    implementation(kotlinx.serialization)
+                    api(koin.core)
                 }
             }
         }
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
+                implementation(libs.bundles.test.common)
             }
         }
         val androidMain by getting
         val androidTest by getting {
             dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
+                implementation(libs.bundles.test.android)
             }
         }
         val iosMain by getting
@@ -67,10 +56,10 @@ kotlin {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = libs.versions.compileSdk.get().toInt()
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 23
-        targetSdk = 31
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
     }
 }

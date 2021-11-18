@@ -9,3 +9,5 @@ pluginManagement {
 rootProject.name = "lottery"
 include(":androidApp")
 include(":shared")
+
+enableFeaturePreview("VERSION_CATALOGS")

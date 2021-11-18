@@ -5,17 +5,23 @@ plugins {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.3.0")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+
+    with(libs) {
+        implementation(bundles.app.ui)
+
+        implementation(koin.android)
+        implementation(androidx.core)
+        implementation(androidx.lifecycle.runtime)
+        implementation(androidx.lifecycle.viewmodel)
+    }
 }
 
 android {
-    compileSdkVersion(31)
+    compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         applicationId = "com.colagom.lottery.android"
-        minSdkVersion(23)
-        targetSdkVersion(31)
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
     }
