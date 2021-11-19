@@ -1,18 +1,22 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
 }
 
 dependencies {
     implementation(project(":shared"))
 
     with(libs) {
-        implementation(bundles.app.ui)
+        implementation(bundles.android.x)
+        implementation(bundles.android.compose)
+        implementation(bundles.android.ui)
 
         implementation(koin.android)
         implementation(androidx.core)
         implementation(androidx.lifecycle.runtime)
         implementation(androidx.lifecycle.viewmodel)
+        implementation(androidx.navigationCompose)
     }
 }
 
@@ -29,5 +33,16 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+    buildFeatures {
+        compose = true
+        buildConfig = false
+        aidl = false
+        renderScript = false
+        resValues = false
+        shaders = false
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.get()
     }
 }

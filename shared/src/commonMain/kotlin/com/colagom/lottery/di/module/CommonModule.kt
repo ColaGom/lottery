@@ -1,5 +1,8 @@
 package com.colagom.lottery.di.module
 
+import com.colagom.lottery.domain.DummyLotteryRepository
+import com.colagom.lottery.domain.LotteryRepository
+import com.colagom.lottery.domain.usecase.GetLotteryUseCase
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
@@ -10,6 +13,9 @@ import org.koin.dsl.module
 fun commonModule(enableNetworkLogs: Boolean) = module {
     single { createJson() }
     single { createHttpClient(get(), enableNetworkLogs = enableNetworkLogs) }
+    single<LotteryRepository> { DummyLotteryRepository() }
+
+    factory { GetLotteryUseCase(get()) }
 }
 
 fun createJson() = Json { isLenient = true; ignoreUnknownKeys = true }

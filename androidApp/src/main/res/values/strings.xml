@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main">메인</string>
+    <string name="setting">설정</string>
+    <string name="history">회차별 번호</string>
+    <string name="create">번호 생성</string>
+</resources>
