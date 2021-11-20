@@ -8,6 +8,7 @@ koin = "3.1.2"
 kotlin = "1.5.31"
 ktor = "1.6.4"
 lifecycle = "2.4.0-rc01"
+accompanist = "0.20.2"
 
 [libraries]
 
@@ -30,8 +31,9 @@ compose-activity = { module = "androidx.activity:activity-compose", version = "1
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-native" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-native" }
 
-google-accompanist-systemUiController = { module = "com.google.accompanist:accompanist-systemuicontroller", version = "0.20.0" }
-google-accompanist-swipeRefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version = "0.20.0" }
+google-accompanist-systemUiController = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+google-accompanist-swipeRefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
+google-accompanist-flowLayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
 
 gradlePlugin-android = { module = "com.android.tools.build:gradle", version = "7.0.3" }
 gradlePlugin-kotlinSerialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
@@ -40,7 +42,7 @@ junit = { module = "junit:junit", version = "4.13.2" }
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-androidxCompose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 
 kotlinx-dateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.3.0" }
@@ -73,7 +75,8 @@ android-compose = [
 ]
 android-ui = [
     "google-accompanist-swipeRefresh",
-    "google-accompanist-systemUiController"
+    "google-accompanist-systemUiController",
+    "google-accompanist-flowLayout"
 ]
 gradlePlugins = [
     "gradlePlugin-android",

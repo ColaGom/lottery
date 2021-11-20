@@ -8,9 +8,8 @@ val Primary = Color(0xFFF2AA4C)
 
 val ColorPalette = darkColors(
     primary = Primary,
-    primaryVariant = Primary,
     surface = Black,
     onSurface = Primary,
-    background = Black,
+    background = Color.Black,
     onBackground = Primary
 )

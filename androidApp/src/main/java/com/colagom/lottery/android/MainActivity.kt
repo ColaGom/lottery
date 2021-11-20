@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
@@ -68,7 +69,12 @@ fun LotteryApp() {
         Scaffold(
             bottomBar = {
                 LotteryBottomNavigation(
-                    onTabSelected = { navController.navigate(it.name) },
+                    onTabSelected = {
+                        navController.navigate(it.name) {
+                            restoreState = true
+                            launchSingleTop = true
+                        }
+                    },
                     selectedTab = selectedTab
                 )
             }
@@ -86,16 +92,18 @@ fun LotteryNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController
 ) {
+    val listState = rememberLazyListState()
+
     NavHost(
         modifier = modifier,
         startDestination = Screen.History.name,
         navController = navController
     ) {
-        composable(Screen.Create.name) {
-
+        composable(Screen.History.name) {
+            HistoryBody(listState = listState)
         }
 
-        composable(Screen.History.name) {
+        composable(Screen.Create.name) {
 
         }
 

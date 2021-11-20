@@ -13,6 +13,7 @@ dependencies {
         implementation(bundles.android.ui)
 
         implementation(koin.android)
+        implementation(koin.androidxCompose)
         implementation(androidx.core)
         implementation(androidx.lifecycle.runtime)
         implementation(androidx.lifecycle.viewmodel)
